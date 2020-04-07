@@ -56,7 +56,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.use_imagenet_data_augmentation:
         set_imagenet_aug(parser)
-
+    
+    logging.basicConfig(filename="./logs/"+str(args.network)+str(args.num_layers)+".log", filemode="w", level=logging.DEBUG)
+    logging.getLogger().addHandler(logging.StreamHandler())
+    logging.basicConfig(level=logging.DEBUG)
     # load network
     from importlib import import_module
     net = import_module('symbols.'+args.network)

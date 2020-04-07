@@ -65,8 +65,7 @@ if __name__ == '__main__':
         lr_step_epochs = '200,250',
     )
     args = parser.parse_args()
-    print(args)
-    logging.basicConfig(filename="./logs/"+network+num_layers+".log", filemode="w", level=logging.DEBUG)
+    logging.basicConfig(filename="./logs/"+str(args.network)+str(args.num_layers)+".log", filemode="w", level=logging.DEBUG)
     logging.getLogger().addHandler(logging.StreamHandler())
     logging.basicConfig(level=logging.DEBUG)
     # load network
@@ -75,4 +74,4 @@ if __name__ == '__main__':
     sym = net.get_symbol(**vars(args))
 
     # train
-    #fit.fit(args, sym, data.get_rec_iter)
+    fit.fit(args, sym, data.get_rec_iter)
